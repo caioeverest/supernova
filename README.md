@@ -1,6 +1,6 @@
 # Supernova
 
-Supernova is an environment-building script that uses Ansible to install and configure basic applications for software development purposes. The idea was based on the project (prepare-dev-environment from @Marco Ollivier) [https://github.com/marcopollivier/prepare-dev-environment]. Because of that, the project shares the same motivation.
+Supernova is an environment-building script that uses Ansible to install and configure basic applications for software development purposes. The idea was based on the project [prepare-dev-environment from @Marco Ollivier] (https://github.com/marcopollivier/prepare-dev-environment). Because of that, the project shares the same motivation.
 
 ## How to use
 
