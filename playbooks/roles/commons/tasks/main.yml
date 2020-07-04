@@ -1,0 +1,22 @@
+---
+
+- name: Executing commons
+  debug:
+    msg:
+      - "User: {{var_user}}"
+      - "Git name: {{var_git_name}}"
+      - "Git email: {{var_git_email}}"
+      - "Os Family {{ansible_facts['os_family']}}"
+
+- name: Creating basic directories structure
+  file:
+    path: "/home/{{var_user}}/developer"
+    state: directory
+    owner: "{{var_user}}"
+    group: "{{var_user}}"
+
+- name: Running custom vim install
+  include: vim.yml
+
+- name: Running Oh My ZSH install
+  include: oh-my-zsh.yml

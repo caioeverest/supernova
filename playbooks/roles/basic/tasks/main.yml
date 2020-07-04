@@ -1,0 +1,13 @@
+---
+
+- name: Start commons scripts
+  debug:
+    msg:
+      - "User: {{var_user}}"
+      - "Git name: {{var_git_name}}"
+      - "Git email: {{var_git_email}}"
+      - "Os Family {{ansible_facts['os_family']}}"
+
+- name: Running ubuntu playbook
+  include_tasks: ubuntu/main.yml
+  when: ansible_facts['os_family'] == "Debian" and ansible_facts['distribution'] == "Ubuntu"

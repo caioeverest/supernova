@@ -1,0 +1,10 @@
+[/]
+area-screenshot-clip=['<Primary><Shift>dollar']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+terminal=@as []
+window-screenshot-clip=['<Primary><Shift>numbersign']
+
+[custom-keybindings/custom0]
+binding='<Super>t'
+command='terminator'
+name='Open terminator'

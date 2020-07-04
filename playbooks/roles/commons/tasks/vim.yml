@@ -1,0 +1,26 @@
+---
+
+- name: Check if vim is cloned
+  stat:
+    path: "/home/{{var_user}}/developer/vim"
+  register: vim
+
+- name: Download custom NeoVim config
+  git:
+    repo: 'https://github.com/caioeverest/vim.git'
+    dest: "/home/{{var_user}}/developer/vim"
+  when: not vim.stat.exists
+
+- name: Execute custom NeoVim config installer script
+  make:
+    chdir: "/home/{{var_user}}/developer/vim"
+  become_user: "{{var_user}}"
+  when: not vim.stat.exists
+
+- name: Write vimrc.local file
+  copy:
+    src: vimrc.local
+    dest: "/home/{{var_user}}/.vimrc.local"
+    owner: "{{var_user}}"
+    group: "{{var_user}}"
+

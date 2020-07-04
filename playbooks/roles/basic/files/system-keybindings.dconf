@@ -1,0 +1,8 @@
+[/]
+close=['<Super>q']
+move-to-workspace-down=['<Primary><Super>Down']
+move-to-workspace-up=['<Primary><Super>Up']
+switch-input-source=@as []
+switch-input-source-backward=@as []
+switch-to-workspace-down=['<Primary>Down']
+switch-to-workspace-up=['<Primary>Up']

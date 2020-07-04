@@ -1,0 +1,25 @@
+---
+
+- name: Send system keybind file to tmp
+  copy:
+    src: system-keybindings.dconf
+    dest: "/tmp/system-keybindings.dconf"
+    owner: "{{var_user}}"
+    group: "{{var_user}}"
+
+- name: Send custom keybind file to tmp
+  copy:
+    src: custom-keybindings.dconf
+    dest: "/tmp/custom-keybindings.dconf"
+    owner: "{{var_user}}"
+    group: "{{var_user}}"
+
+- name: Load system key bindings
+  shell: "dconf load /org/gnome/desktop/wm/keybindings/ < /tmp/system-keybindings.dconf"
+
+- name: Load custom key bindings
+  shell: "dconf load /org/gnome/settings-daemon/plugins/media-keys/ < /tmp/custom-keybindings.dconf"
+
+- name: Remove keybind files
+  file: path=/tmp/system-keybindings.dconf state=absent
+  file: path=/tmp/custom-keybindings.dconf state=absent

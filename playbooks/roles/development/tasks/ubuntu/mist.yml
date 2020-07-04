@@ -1,0 +1,26 @@
+---
+
+- name: Install Terminator
+  apt:
+    name: terminator
+
+- name: Add Lazygit repository
+  apt_repository:
+    repo: "ppa:lazygit-team/release"
+
+- name: Install Lazygit
+  apt:
+    name: lazygit
+
+- name: Install RipGrep
+  apt:
+    name: ripgrep
+
+- name: Install Postman
+  snap:
+    name: postman
+
+- name: Install GitKraken
+  snap:
+    name: gitkraken
+    classic: True

@@ -1,0 +1,13 @@
+---
+
+- name: Install properties common
+  apt: name=software-properties-common
+
+- name: Install basic apps
+  include: basic-stuff.yml
+
+- name: Install and Configure git
+  include: git.yml
+
+- name: Configure keybind
+  include: keybinding.yml
