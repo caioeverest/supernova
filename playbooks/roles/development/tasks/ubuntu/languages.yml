@@ -11,18 +11,6 @@
     channel: "10/stable"
     classic: yes
 
-- name: Install Java JRE
-  apt:
-    name: default-jre
-
-- name: Install Java JDK
-  apt:
-    name: default-jdk
-
-- name: Install Maven
-  apt:
-    name: maven
-
 - name: Check if erlang package is already downloaded and instaled
   stat:
     path: /tmp/erlang-solutions.deb

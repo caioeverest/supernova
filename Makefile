@@ -11,6 +11,7 @@ check-params:
 prerun:
 	sudo apt update
 	sudo apt install ansible
+	ansible-galaxy install comcast.sdkman
 
 .PHONY: install
 install: check-params prerun

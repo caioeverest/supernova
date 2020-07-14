@@ -26,6 +26,7 @@
 - name: Check if zsh-autosuggestion already cloned
   stat:
     path: "/home/{{var_user}}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+  become_user: "{{var_user}}"
   register: zsh_autosuggestions_folder
 
 - name: Add zsh-autosuggestion plugin

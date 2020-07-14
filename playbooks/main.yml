@@ -3,6 +3,26 @@
   become_method: sudo
   gather_facts: yes
   roles:
-    - { role: basic }
-    - { role: development }
-    - { role: commons }
+    - role: basic
+    - role: development
+    - role: commons
+    - role: comcast.sdkman
+      sdkman_user: "{{var_user}}"
+      sdkman_group: "{{var_user}}"
+      sdkman_auto_answer: true
+      sdkman_update: true
+      sdkman_install_packages:
+        - { candidate: java, version: 13.0.2-open }
+        - { candidate: java, version: 10.0.2-open }
+        - { candidate: maven, version: 3.6.3 }
+      sdkman_defaults:
+        maven: 3.6.3
+        java: 13.0.2-open
+      sdkman_flush_caches_before:
+        - temp
+      sdkman_flush_caches_after:
+        - archives
+        - broadcast
+        - candidates
+        - temp
+      sdkman_offline_mode: false
