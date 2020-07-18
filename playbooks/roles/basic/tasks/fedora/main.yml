@@ -5,3 +5,6 @@
 
 - name: Install and Configure git
   include: git.yml
+
+- name: Configure keybind
+  include: keybinding.yml
