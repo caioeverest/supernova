@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := install
 
 git_name := $(or $(git_name),${USER})
-distro := $(shell cat /etc/*release | grep 'DISTRIB_ID=' | sed 's/DISTRIB_ID=//' | tr A-Z a-z)
+distro := $(shell cat /etc/*release | grep '^ID=' | sed 's/ID=//' | tr A-Z a-z)
 
 .PHONY: check-params
 check-params:
@@ -14,7 +14,7 @@ prerun:
 ifeq ($(distro), "ubuntu")
 	sudo apt update
 	sudo apt install ansible
-ifeq($(distro), "ubuntu")
+ifeq($(distro), "fedora")
 	sudo dnf install ansible
 endif
 	ansible-galaxy install comcast.sdkman

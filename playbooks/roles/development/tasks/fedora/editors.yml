@@ -1,9 +1,8 @@
 ---
 
 - name: Install VSCode
-  snap:
-    name: code
-    classic: yes
+  flatpak:
+    name: com.visualstudio.code
 
 - name: Check if JetBrains ToolBox already installed
   stat:

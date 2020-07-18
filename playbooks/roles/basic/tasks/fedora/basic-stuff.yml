@@ -7,6 +7,32 @@
   dnf:
     name: snapd
 
+- name: Create symbolic link for snapd home
+  file:
+    src: /var/lib/snapd/snap
+    dest: /snap
+    state: link
+
+- name: Start snapd server
+  shell: "systemctl start snapd.service"
+
+- name: Install basic repositories
+  dnf:
+    name: fedora-workstation-repositories
+
+- name: Activate repository
+  shell: "dnf config-manager --set-enabled google-chrome"
+
+- name: Install Google Chrome
+  dnf:
+    name: google-chrome-stable
+
+- name: Add the flathub flatpak repository remote to the user installation
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
 - name: Install Gnome teaks
   dnf:
     name: gnome-tweaks
@@ -15,20 +41,12 @@
   dnf:
     name: vim
 
-- name: Install epel-release
-  yum:
-    name: epel-release.noarch
-
-- name: Install XClip
-  yum:
-    name: xclip
-
 - name: Install ZSH
   dnf:
     name: zsh
 
 - name: Install HTTPie
-  flatpak:
+  dnf:
     name: httpie
 
 - name: Install net-tools
@@ -41,12 +59,8 @@
 
 - name: Install Spotify
   flatpak:
-    name: spotify
+    name: com.spotify.Client
 
 - name: Install Discord
   flatpak:
-    name: discord
-
-- name: Install Gnome extension preference
-  dnf:
-    name: gnome-shell-extension-prefs
+    name: com.discordapp.Discord

@@ -5,34 +5,23 @@
     path: "/home/{{var_user}}/.oh-my-zsh"
   register: oh_my_zsh_folder
 
-- name: Download oh my zsh installer
-  get_url:
-    url: "https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh"
-    dest: "/tmp/zsh-installer.sh"
-    mode: '0755'
-    owner: "{{var_user}}"
-    group: "{{var_user}}"
-  when: not oh_my_zsh_folder.stat.exists
-
-- name: Execute the zsh-installer.sh
-  shell: /tmp/zsh-installer.sh
+- name: Cloning  oh-my-zsh
+  git:
+    repo: "https://github.com/robbyrussell/oh-my-zsh"
+    dest: "/home/{{var_user}}/.oh-my-zsh"
   become_user: "{{var_user}}"
-  when: not oh_my_zsh_folder.stat.exists
-
-- name: Remove the zsh-installer.sh
-  file: path=/tmp/zsh-installer.sh state=absent
   when: not oh_my_zsh_folder.stat.exists
 
 - name: Check if zsh-autosuggestion already cloned
   stat:
     path: "/home/{{var_user}}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
-  become_user: "{{var_user}}"
   register: zsh_autosuggestions_folder
 
 - name: Add zsh-autosuggestion plugin
   git:
     repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
     dest: "/home/{{var_user}}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+  become_user: "{{var_user}}"
   when: not zsh_autosuggestions_folder.stat.exists
 
 - name: Build template of zshrc

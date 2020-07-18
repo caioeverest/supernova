@@ -21,5 +21,4 @@
 
 - name: Install GitKraken
   flatpak:
-    name: gitkraken
-    classic: True
+    name: com.axosoft.GitKraken
