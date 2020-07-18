@@ -6,7 +6,34 @@ plugins=(zsh-autosuggestions git)
 
 source $ZSH/oh-my-zsh.sh
 
+# Docker shortcuts
+function containers() {
+    if [ -z $1 ]; then
+        echo "You must pass at least 1 argument"
+        return 1
+    fi
+
+    IDS=$(docker ps -aq)
+    if [ -z $IDS ]; then
+        echo "thare are no containers"
+        return 0
+    fi
+
+    if [ $1 = "stop" ]; then
+        docker stop $IDS
+    elif [ $1 = "delete" ]; then
+        docker rm $IDS
+    else
+        echo "I dont know that promp"
+    fi
+}
+
 # Cool Alias
 alias v='vim'
 alias lg='lazygit'
+
+# Go Envs
+export GOPATH="{{var_home_folder}}/go"
+export GOROOT="/usr/local/go"
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
