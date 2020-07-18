@@ -1,0 +1,25 @@
+---
+
+- name: Install Terminator
+  dnf:
+    name: terminator
+
+- name: Add Lazygit repository
+  shell: dnf copr enable atim/lazygit -y
+
+- name: Install Lazygit
+  dnf:
+    name: lazygit
+
+- name: Install RipGrep
+  dnf:
+    name: ripgrep
+
+- name: Install Postman
+  flatpak:
+    name: postman
+
+- name: Install GitKraken
+  flatpak:
+    name: gitkraken
+    classic: True

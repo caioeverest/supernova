@@ -1,0 +1,52 @@
+---
+
+- name: Install Pip3
+  dnf: name=python3-pip
+
+- name: Install snapd
+  dnf:
+    name: snapd
+
+- name: Install Gnome teaks
+  dnf:
+    name: gnome-tweaks
+
+- name: Install Vim
+  dnf:
+    name: vim
+
+- name: Install epel-release
+  yum:
+    name: epel-release.noarch
+
+- name: Install XClip
+  yum:
+    name: xclip
+
+- name: Install ZSH
+  dnf:
+    name: zsh
+
+- name: Install HTTPie
+  flatpak:
+    name: httpie
+
+- name: Install net-tools
+  dnf:
+    name: net-tools
+
+- name: Install GCC
+  dnf:
+    name: gcc
+
+- name: Install Spotify
+  flatpak:
+    name: spotify
+
+- name: Install Discord
+  flatpak:
+    name: discord
+
+- name: Install Gnome extension preference
+  dnf:
+    name: gnome-shell-extension-prefs

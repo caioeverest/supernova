@@ -1,0 +1,12 @@
+---
+
+- name: Install Golang
+  snap:
+    name: go
+    classic: yes
+
+- name: Install NodeJS
+  snap:
+    name: node
+    channel: "10/stable"
+    classic: yes
