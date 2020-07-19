@@ -39,7 +39,7 @@
 
 - name: Install Vim
   dnf:
-    name: vim
+    name: vim-X11
 
 - name: Install ZSH
   dnf:

@@ -9,7 +9,7 @@
 
 - name: Install Vim
   apt:
-    name: vim
+    name: vim-gtk3
 
 - name: Install XClip
   apt:
