@@ -29,11 +29,13 @@ function containers() {
 }
 
 # Cool Alias
-alias v='vim'
+alias vim='gvim -v'
+alias vi='gvim -v'
+alias v='gvim -v'
 alias lg='lazygit'
 
 # Go Envs
 export GOPATH="{{var_home_folder}}/go"
-export GOROOT="/usr/local/go"
+export GOROOT="/var/lib/snapd/snap/go/current"
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
