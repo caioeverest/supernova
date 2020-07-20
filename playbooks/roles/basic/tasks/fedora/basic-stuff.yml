@@ -21,6 +21,9 @@
     name: fedora-workstation-repositories
 
 - name: Activate repository
+  shell: dnf config-manager --set-enabled rpmfusion-nonfree-nvidia-driver
+
+- name: Activate repository
   shell: "dnf config-manager --set-enabled google-chrome"
 
 - name: Install Google Chrome
