@@ -1,11 +1,32 @@
 ---
 
-- name: Install Docker
-  snap:
-    name: docker
+- name: Enable old CGroups
+  shell: "grubby --update-kernel=ALL --args=\"systemd.unified_cgroup_hierarchy=0\""
+
+- name: Whitelist docker in firewall
+  firewalld:
+    zone: trusted
+    interface: docker0
+    permanent: yes
+    state: enabled
+  firewalld:
+    zone: FedoraWorkstation
+    masquerade: yes
+    permanent: yes
+    state: enabled
+
+- name: Install Docker Moby
+  dnf:
+    name: moby-engine
+
+- name: Install Docker compose
+  dnf:
+    name: docker-compose
 
 - name: Ensure group "docker" exists
-  group: name=docker state=present
+  group:
+    name:docker
+    state:present
 
 - name: "Set permissions for docker usage on user {{var_user}}"
   user:
