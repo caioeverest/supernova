@@ -3,12 +3,14 @@
 - name: Enable old CGroups
   shell: "grubby --update-kernel=ALL --args=\"systemd.unified_cgroup_hierarchy=0\""
 
-- name: Whitelist docker in firewall
+- name: Whitelist docker in firewall for trusted zone
   firewalld:
     zone: trusted
     interface: docker0
     permanent: yes
     state: enabled
+
+- name: Whitelist docker in firewall for fedora workstation zone
   firewalld:
     zone: FedoraWorkstation
     masquerade: yes
@@ -25,8 +27,8 @@
 
 - name: Ensure group "docker" exists
   group:
-    name:docker
-    state:present
+    name: docker
+    state: present
 
 - name: "Set permissions for docker usage on user {{var_user}}"
   user:

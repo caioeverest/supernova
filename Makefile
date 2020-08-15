@@ -7,6 +7,9 @@ distro := $(shell cat /etc/*release | grep '^ID=' | sed 's/ID=//' | tr A-Z a-z)
 ifeq ($(distro),ubuntu)
 	pkgmanager = apt
 endif
+ifeq ($(distro),elementary)
+	pkgmanager = apt
+endif
 ifeq ($(distro),fedora)
 	pkgmanager = dnf
 endif
