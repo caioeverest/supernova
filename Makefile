@@ -2,6 +2,7 @@
 
 git_name := $(or $(git_name),${USER})
 distro := $(shell cat /etc/*release | grep '^ID=' | sed 's/ID=//' | tr A-Z a-z)
+golang_version := "1.15"
 
 #Set package manager
 ifeq ($(distro),ubuntu)
@@ -28,6 +29,12 @@ prerun:
 
 .PHONY: install
 install: check-params prerun
-	@ansible-playbook -e var_home_folder=${HOME} -e var_user=${USER} -e var_git_name=$(git_name) -e var_git_email=$(git_email) -k -b --ask-become-pass playbooks/main.yml
+	@ansible-playbook \
+		-e var_home_folder=${HOME} \
+		-e var_user=${USER} \
+		-e var_git_name=$(git_name) \
+		-e var_git_email=$(git_email) \
+		-e var_go_version=$(golang_version) \
+		-k -b --ask-become-pass playbooks/main.yml
 
 

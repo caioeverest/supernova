@@ -1,0 +1,27 @@
+---
+
+- name: Check if Golang already installed
+  stat:
+    path: /usr/local/go
+  register: golang_cli
+
+- name: Download JetBrains ToolBox
+  get_url:
+    url: "https://dl.google.com/go/go{{var_go_version}}.linux-amd64.tar.gz"
+    dest: "/tmp/golang.tar.gz"
+    mode: '0755'
+  when: not golang_cli.stat.exists
+
+- name: Install Golang
+  unarchive:
+    src: /tmp/golang.tar.gz
+    dest: /usr/local/go
+    extra_opts:
+      - --xvf
+  when: not golang_cli.stat.exists
+
+- name: Install NodeJS
+  snap:
+    name: node
+    channel: "10/stable"
+    classic: yes
