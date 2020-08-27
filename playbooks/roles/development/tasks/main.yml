@@ -18,4 +18,4 @@
 
 - name: Running elementary playbook
   include_tasks: elementary/main.yml
-  when: ansible_facts['os_family'] == "Debian" and ansible_facts['distribution'] == "Elementary"
+  when: ansible_facts['os_family'] == "Debian" and ansible_facts['distribution'] == "elementary OS"
