@@ -1,0 +1,59 @@
+---
+
+- name: Install Snapd
+  apt: name=snapd
+
+- name: Install Pip3
+  apt: name=python3-pip
+
+- name: Install Gnome teaks
+  apt:
+    name: gnome-tweaks
+
+- name: Install Vim
+  apt:
+    name: vim-gtk3
+
+- name: Install XClip
+  apt:
+    name: xclip
+
+- name: Install ZSH
+  apt:
+    name: zsh
+
+- name: Install CURL
+  apt:
+    name: curl
+
+- name: Install HTTPie
+  apt:
+    name: httpie
+
+- name: Install net-tools
+  apt:
+    name: net-tools
+
+- name: Install GCC
+  apt:
+    name: gcc
+
+- name: Install Spotify
+  snap:
+    name: spotify
+
+- name: Install Discord
+  snap:
+    name: discord
+
+- name: Install Gnome extension preference
+  apt:
+    name: gnome-shell-extension-prefs
+
+- name: Add AppImage Launcher repository
+  apt_repository:
+    repo: "ppa:appimagelauncher-team/stable"
+
+- name: Install AppImage Launcher
+  apt:
+    name: appimagelauncher

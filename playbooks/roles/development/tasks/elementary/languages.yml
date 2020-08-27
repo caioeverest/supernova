@@ -5,7 +5,7 @@
     path: /usr/local/go
   register: golang_cli
 
-- name: Download JetBrains ToolBox
+- name: Download Golang
   get_url:
     url: "https://dl.google.com/go/go{{var_go_version}}.linux-amd64.tar.gz"
     dest: "/tmp/golang.tar.gz"

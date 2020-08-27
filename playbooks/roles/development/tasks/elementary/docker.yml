@@ -1,0 +1,22 @@
+---
+
+- name : Install docker dependencies
+  apt:
+    name:
+      - "apt-transport-https"
+      - "ca-certificates"
+      - "gnupg-agent"
+    state: present
+
+- name: Add docker engine keys
+  apt_key:
+    url: "https://download.docker.com/linux/ubuntu/gpg"
+    state: present
+
+- name: Install docker engine
+  apt:
+    name:
+      - "docker-ce"
+      - "docker-ce-cli"
+      - "containerd.io"
+    state: present

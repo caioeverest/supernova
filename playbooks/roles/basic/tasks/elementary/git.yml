@@ -1,0 +1,14 @@
+---
+
+- name: Install Git
+  apt:
+    name: git
+
+- git_config:
+    name: user.email
+    value: "{{var_git_email}}"
+
+- git_config:
+    name: user.name
+    value: "{{var_git_name}}"
+
