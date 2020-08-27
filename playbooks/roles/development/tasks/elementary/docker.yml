@@ -13,10 +13,16 @@
     url: "https://download.docker.com/linux/ubuntu/gpg"
     state: present
 
+- name: Add repository docker
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+    state: present
+
 - name: Install docker engine
   apt:
     name:
       - "docker-ce"
       - "docker-ce-cli"
       - "containerd.io"
+    update_cache: yes
     state: present

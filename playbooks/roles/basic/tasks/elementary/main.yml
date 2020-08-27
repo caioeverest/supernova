@@ -1,13 +1,47 @@
 ---
 
-- name: Install properties common
-  apt: name=software-properties-common
+- name: Install Snapd
+  apt: name=snapd
 
-- name: Install basic apps
-  include: basic-stuff.yml
+- name: Install Pip3
+  apt: name=python3-pip
 
-- name: Install and Configure git
-  include: git.yml
+- name: Install Gnome teaks
+  apt:
+    name: gnome-tweaks
 
-  # - name: Configure keybind
-  # include: keybinding.yml
+- name: Install Vim
+  apt:
+    name: vim-gtk3
+
+- name: Install XClip
+  apt:
+    name: xclip
+
+- name: Install ZSH
+  apt:
+    name: zsh
+
+- name: Install CURL
+  apt:
+    name: curl
+
+- name: Install HTTPie
+  apt:
+    name: httpie
+
+- name: Install net-tools
+  apt:
+    name: net-tools
+
+- name: Install GCC
+  apt:
+    name: gcc
+
+- name: Install Spotify
+  snap:
+    name: spotify
+
+- name: Install Discord
+  snap:
+    name: discord

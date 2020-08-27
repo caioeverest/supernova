@@ -1,0 +1,24 @@
+- name: Ensure group "docker" exists
+  group:
+    name: docker
+    state: present
+
+- name: "Set permissions for docker usage on user {{var_user}}"
+  user:
+    name: "{{var_user}}"
+    groups: docker
+    append: yes
+
+- name: Check if CTOP is already installed
+  stat:
+    path: "/usr/local/bin/ctop"
+  register: ctop
+
+- name: Install CTOP
+  get_url:
+    url: 'https://github.com/bcicen/ctop/releases/download/v0.7.3/ctop-0.7.3-linux-amd64'
+    dest: /usr/local/bin/ctop
+    mode: '0755'
+    owner: "{{var_user}}"
+    group: "{{var_user}}"
+  when: not ctop.stat.exists

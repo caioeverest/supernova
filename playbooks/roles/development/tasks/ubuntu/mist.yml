@@ -13,8 +13,9 @@
     name: lazygit
 
 - name: Install RipGrep
-  apt:
+  snap:
     name: ripgrep
+    classic: true
 
 - name: Install Postman
   snap:
@@ -24,3 +25,8 @@
   snap:
     name: gitkraken
     classic: True
+
+- name: Install VSCode
+  snap:
+    name: code
+    classic: yes

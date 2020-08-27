@@ -24,6 +24,8 @@ check-params:
 .PHONY: prerun
 prerun:
 	sudo $(pkgmanager) update -y
+	sudo $(pkgmanager) install software-properties-common -y
+	@if [ "$(pkgmanager)" = "apt" ]; then sudo apt-add-repository --yes --update ppa:ansible/ansible; fi
 	sudo $(pkgmanager) install -y ansible
 	ansible-galaxy install comcast.sdkman
 

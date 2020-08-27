@@ -6,6 +6,9 @@ plugins=(zsh-autosuggestions git)
 
 source $ZSH/oh-my-zsh.sh
 
+# Snapd
+export PATH=$PATH:/snap/bin
+
 # Docker shortcuts
 function containers() {
     if [ -z $1 ]; then
@@ -36,6 +39,6 @@ alias lg='lazygit'
 
 # Go Envs
 export GOPATH="{{var_home_folder}}/go"
-export GOROOT="/var/lib/snapd/snap/go/current"
+export GOROOT="/usr/local/go"
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
