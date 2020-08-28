@@ -1,11 +1,5 @@
 ---
 
-- name: Open languages playbook
-  include: languages.yml
-
-- name: Open editors playbook
-  include: editors.yml
-
 - name: Open docker playbook
   include: docker.yml
 

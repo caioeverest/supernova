@@ -1,10 +1,6 @@
 ---
 
-- name: Install VSCode
-  flatpak:
-    name: com.visualstudio.code
-
-- name: Check if JetBrains ToolBox already installed
+- name: Check if JetBrains ToolBox already inst
   stat:
     path: /opt/jetbrains-toolbox/jetbrains-toolbox.sh
   register: jetbrains_toolbox

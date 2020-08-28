@@ -1,9 +1,5 @@
 ---
 
-- name: Install Git
-  dnf:
-    name: git
-
 - git_config:
     name: user.email
     value: "{{var_git_email}}"

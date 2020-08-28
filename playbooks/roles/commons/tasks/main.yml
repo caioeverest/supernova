@@ -20,3 +20,18 @@
 
 - name: Running Oh My ZSH install
   include: oh-my-zsh.yml
+
+- name: Install jetbrains toolbox
+  include: jetbrains.yml
+
+- name: Running Golang install
+  include: golang.yml
+
+- name: Running Docker configs, ctop and stuff
+  include: docker.yml
+
+- name: Config git
+  include: git.yml
+
+- name: Configure keybind
+  include: keybinding.yml

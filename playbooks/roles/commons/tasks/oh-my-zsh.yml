@@ -31,3 +31,6 @@
     owner: "{{var_user}}"
     group: "{{var_user}}"
     backup: yes
+
+- name: Set zsh as default
+  shell: "sudo usermod -s $(which zsh) {{var_user}}"

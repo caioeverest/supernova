@@ -22,3 +22,7 @@
 - name: Install GitKraken
   flatpak:
     name: com.axosoft.GitKraken
+
+- name: Install VSCode
+  flatpak:
+    name: com.visualstudio.code

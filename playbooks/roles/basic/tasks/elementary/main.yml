@@ -1,5 +1,8 @@
 ---
 
+- name: Install Snapd
+  apt: name=snapd
+
 - name: Install Pip3
   apt: name=python3-pip
 
@@ -42,15 +45,3 @@
 - name: Install Discord
   snap:
     name: discord
-
-- name: Install Gnome extension preference
-  apt:
-    name: gnome-shell-extension-prefs
-
-- name: Add AppImage Launcher repository
-  apt_repository:
-    repo: "ppa:appimagelauncher-team/stable"
-
-- name: Install AppImage Launcher
-  apt:
-    name: appimagelauncher
