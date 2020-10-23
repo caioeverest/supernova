@@ -1,4 +1,7 @@
 ---
+- name: Work out the distribution
+  command: lsb_release -sc
+  register: distro_codename
 
 - name : Install docker dependencies
   apt:
@@ -15,7 +18,7 @@
 
 - name: Add repository docker
   apt_repository:
-    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{distro_codename}} stable"
     state: present
 
 - name: Install docker engine
