@@ -45,7 +45,3 @@
 - name: Install Discord
   snap:
     name: discord
-
-- name: Install Slack
-  snap:
-    name: slack

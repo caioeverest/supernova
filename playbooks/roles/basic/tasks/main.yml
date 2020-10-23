@@ -19,3 +19,7 @@
 - name: Running elementary playbook
   include_tasks: elementary/main.yml
   when: ansible_facts['os_family'] == "elementary OS"
+
+- name: Running Pop!_OS playbook
+  include_tasks: popos/main.yml
+  when: ansible_facts['os_family'] == "Pop!_OS"

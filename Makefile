@@ -14,6 +14,9 @@ endif
 ifeq ($(distro),fedora)
 	pkgmanager = dnf
 endif
+ifeq ($(distro),pop!_os)
+	pkgmanager = apt
+endif
 
 .PHONY: check-params
 check-params:
