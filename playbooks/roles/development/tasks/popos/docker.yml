@@ -18,7 +18,7 @@
 
 - name: Add repository docker
   apt_repository:
-    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{distro_codename}} stable"
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{distro_codename.stdout}} stable"
     state: present
 
 - name: Install docker engine
