@@ -14,6 +14,9 @@ endif
 ifeq ($(distro),fedora)
 	pkgmanager = dnf
 endif
+ifeq ($(distro),pop)
+	pkgmanager = apt
+endif
 
 .PHONY: check-params
 check-params:
@@ -25,7 +28,7 @@ check-params:
 prerun:
 	sudo $(pkgmanager) update -y
 	sudo $(pkgmanager) install software-properties-common -y
-	@if [ "$(pkgmanager)" = "apt" ]; then sudo apt-add-repository --yes --update ppa:ansible/ansible; fi
+	#@if [ "$(pkgmanager)" = "apt" ]; then sudo apt-add-repository --yes --update ppa:ansible/ansible; fi
 	sudo $(pkgmanager) install -y ansible
 	ansible-galaxy install comcast.sdkman
 

@@ -6,6 +6,12 @@
 - name: Install Pip3
   apt: name=python3-pip
 
+- name: Add the flathub flatpak repository remote to the user installation
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
 - name: Install Gnome teaks
   apt:
     name: gnome-tweaks
@@ -39,13 +45,13 @@
     name: gcc
 
 - name: Install Spotify
-  snap:
+  flatpak:
     name: spotify
 
 - name: Install Discord
-  snap:
+  flatpak:
     name: discord
 
 - name: Install Slack
-  snap:
-    name: slack
+  flatpak:
+    name: com.slack.Slack
