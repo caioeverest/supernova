@@ -8,3 +8,13 @@
     name: user.name
     value: "{{var_git_name}}"
 
+- name: Write global git ignore file
+  copy:
+    src: global-git-ignore
+    dest: "/home/{{var_user}}/.global-git-ignore"
+    owner: "{{var_user}}"
+    group: "{{var_user}}"
+
+- git_config:
+    name: core.excludesfile
+    value: "/home/{{var_user}}/.global-git-ignore"
