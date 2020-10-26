@@ -17,16 +17,14 @@
     name: ripgrep
     classic: true
 
-- name: Install Insomnia
-  snap:
-    name: insomnia
+- name: Install Postman
+  flatpak:
+    name: com.getpostman.Postman
 
 - name: Install GitKraken
-  snap:
-    name: gitkraken
-    classic: True
+  flatpak:
+    name: com.axosoft.GitKraken
 
 - name: Install VSCode
-  snap:
-    name: code
-    classic: yes
+  flatpak:
+    name: com.visualstudio.code
