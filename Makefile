@@ -3,6 +3,7 @@
 git_name := $(or $(git_name),${USER})
 distro := $(shell cat /etc/*release | grep '^ID=' | sed 's/ID=//' | tr A-Z a-z)
 golang_version := "1.15"
+k9s_version := "0.24.2"
 
 #Set package manager
 ifeq ($(distro),ubuntu)
@@ -40,6 +41,7 @@ install: check-params prerun
 		-e var_git_name=$(git_name) \
 		-e var_git_email=$(git_email) \
 		-e var_go_version=$(golang_version) \
+		-e var_k9s_version=$(k9s_version) \
 		-k -b --ask-become-pass playbooks/main.yml
 
 

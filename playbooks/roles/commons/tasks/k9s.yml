@@ -1,0 +1,18 @@
+---
+
+- name: Check if k9s already installed
+  stat:
+    path: /usr/local/k9s
+  register: k9s_cli
+
+- name: Download k9s
+  get_url:
+    url: "https://github.com/derailed/k9s/releases/download/v{{var_k9s_version}}/k9s_Linux_x86_64.tar.gz"
+    dest: "/tmp/k9s.tar.gz"
+    owner: "{{var_user}}"
+    group: "{{var_user}}"
+  when: not k9s_cli.stat.exists
+
+- name: Install k9s
+  shell: tar -C /usr/local/bin -xzf /tmp/k9s.tar.gz k9s
+  when: not k9s_cli.stat.exists

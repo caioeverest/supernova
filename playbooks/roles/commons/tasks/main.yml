@@ -38,3 +38,6 @@
 
 - name: Running Minikube install
   include: minikube.yml
+
+- name: Running k9s install
+  include: k9s.yml
