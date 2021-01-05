@@ -4,6 +4,7 @@ ZSH_THEME="bira"
 
 plugins=(zsh-autosuggestions git)
 
+source "$HOME/.sdkman/bin/sdkman-init.sh"
 source $ZSH/oh-my-zsh.sh
 
 # Snapd
@@ -31,14 +32,40 @@ function containers() {
     fi
 }
 
+# Load envs
+function load-envs() {
+    [[ -z $1 ]] && FILE_PATH=".env" || FILE_PATH=$1
+    unamestr=$(uname)
+
+    if [ "$unamestr" = 'Linux' ]; then
+        export $(grep -v '^#' $FILE_PATH | xargs -d '\n')
+    elif [ "$unamestr" = 'FreeBSD' ]; then
+        export $(grep -v '^#' $FILE_PATH | xargs -0)
+    fi
+}
+
+function clear-envs() {
+    [[ -z $1 ]] && FILE_PATH=".env" || FILE_PATH=$1
+    unset $(grep -v '^#' $FILE_PATH | sed -E 's/^(.*?)=(.?*)/\1/; s/^(.*?)=.*/\1/' | xargs)
+}
+
 # Cool Alias
 alias vim='gvim -v'
 alias vi='gvim -v'
 alias v='gvim -v'
 alias lg='lazygit'
 
-# Go Envs
+# Go
 export GOPATH="{{var_home_folder}}/go"
 export GOROOT="/usr/local/go"
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
+function go-cover() {
+    PKG="./..."
+    if [ -z $1 ]; then PGK=$1;fi
+    go test -p=1 -coverpkg=$PKG -coverprofile=profile.cov $PKG
+    go tool cover -func profile.cov
+}
+
+# General
+export PATH=$PATH:$HOME/.local/bin
