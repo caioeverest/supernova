@@ -41,3 +41,6 @@
 
 - name: Running k9s install
   include: k9s.yml
+
+- name: Running KubeCTL install
+  include: kubectl.yml

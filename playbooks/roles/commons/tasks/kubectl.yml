@@ -1,0 +1,19 @@
+---
+
+- name: Check if Kubectl is already installed
+  stat:
+    path: /tmp/kubectl
+    register: kubectl
+
+- name: Get last stable version
+  command: curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
+  register: kubectl_version
+  when: not kubectl.stat.exists
+
+- name: Download Kubectl
+  get_url:
+    url: "https://storage.googleapis.com/kubernetes-release/release/{{kubectl_version}}/bin/linux/amd64/kubectl"
+    dest: "/usr/local/bin/kubectl"
+    owner: "{{var_user}}"
+    group: "{{var_user}}"
+  when: not kubectl.stat.exists
