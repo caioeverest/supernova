@@ -35,3 +35,6 @@
 
 - name: Configure keybind
   include: keybinding.yml
+
+- name: Running Minikube install
+  include: minikube.yml
