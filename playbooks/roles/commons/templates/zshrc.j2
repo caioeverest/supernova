@@ -35,18 +35,12 @@ function containers() {
 # Load envs
 function load-envs() {
     [[ -z $1 ]] && FILE_PATH=".env" || FILE_PATH=$1
-    unamestr=$(uname)
-
-    if [ "$unamestr" = 'Linux' ]; then
-        export $(grep -v '^#' $FILE_PATH | xargs -d '\n')
-    elif [ "$unamestr" = 'FreeBSD' ]; then
-        export $(grep -v '^#' $FILE_PATH | xargs -0)
-    fi
+    grep -Ev '^(#|$)' $FILE_PATH | while IFS= read -r f; do export $f; done
 }
 
 function clear-envs() {
     [[ -z $1 ]] && FILE_PATH=".env" || FILE_PATH=$1
-    unset $(grep -v '^#' $FILE_PATH | sed -E 's/^(.*?)=(.?*)/\1/; s/^(.*?)=.*/\1/' | xargs)
+    unset $(grep -Ev '^(#|$)' $FILE_PATH | cut -d "=" -f 1 | xargs -0)
 }
 
 # Cool Alias
