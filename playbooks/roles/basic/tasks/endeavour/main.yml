@@ -3,10 +3,6 @@
 - name: Install Pip3
   pacman: name=python-pip
 
-# - name: Install Gnome teaks
-#   pacman:
-#     name: gnome-tweaks
-
 - name: Install Vim
   pacman:
     name: gvim
@@ -64,3 +60,7 @@
 - name: Install Slack
   flatpak:
     name: com.slack.Slack
+
+- name: Running Latte Dock playbook
+  include_tasks: latte-dock.yml
+

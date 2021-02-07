@@ -17,15 +17,3 @@
     cmd: "makepkg -si"
   become_user: "{{var_user}}"
   when: not yay.stat.exists
-
-# - name: Check if ansible-yay is cloned
-#   stat:
-#     path: "/home/{{var_user}}/developer/ansible-yay"
-#   register: ansibleyay
-
-# - name: Cloning Yay git
-#   git:
-#     repo: 'https://aur.archlinux.org/yay-git.git'
-#     dest: "/home/{{var_user}}/developer/yay-git"
-#   become_user: "{{var_user}}"
-#   when: not yay.stat.exists
