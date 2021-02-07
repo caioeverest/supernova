@@ -1,0 +1,7 @@
+- name: Install Google Chrome
+  yay:
+    name: google-chrome
+
+- name: Install GitKraken
+  yay:
+    name: gitkraken

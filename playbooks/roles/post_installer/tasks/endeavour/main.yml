@@ -1,0 +1,7 @@
+---
+
+- name: Installing Yay
+  include_tasks: yay.yml
+
+- name: Installing Yay Apps
+  include_tasks: apps.yml

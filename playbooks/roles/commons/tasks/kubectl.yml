@@ -3,7 +3,7 @@
 - name: Check if Kubectl is already installed
   stat:
     path: /tmp/kubectl
-    register: kubectl
+  register: kubectl
 
 - name: Get last stable version
   command: curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
@@ -12,7 +12,7 @@
 
 - name: Download Kubectl
   get_url:
-    url: "https://storage.googleapis.com/kubernetes-release/release/{{kubectl_version}}/bin/linux/amd64/kubectl"
+    url: "https://storage.googleapis.com/kubernetes-release/release/{{kubectl_version.stdout}}/bin/linux/amd64/kubectl"
     dest: "/usr/local/bin/kubectl"
     owner: "{{var_user}}"
     group: "{{var_user}}"

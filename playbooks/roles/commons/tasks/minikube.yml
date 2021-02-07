@@ -3,7 +3,7 @@
 - name: Check if Minikube is already installed
   stat:
     path: /tmp/minikube
-    register: minikube
+  register: minikube
 
 - name: Download Minikube
   get_url:
