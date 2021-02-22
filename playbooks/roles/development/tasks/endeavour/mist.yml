@@ -1,0 +1,21 @@
+---
+
+- name: Install Terminator
+  pacman:
+    name: terminator
+
+# - name: Install Lazygit
+#   pacman:
+#     name: lazygit
+
+- name: Install RipGrep
+  pacman:
+    name: ripgrep
+
+- name: Install Postman
+  flatpak:
+    name: postman
+
+- name: Install VSCode
+  flatpak:
+    name: com.visualstudio.code

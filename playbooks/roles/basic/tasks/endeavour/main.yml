@@ -1,0 +1,66 @@
+---
+
+- name: Install Pip3
+  pacman: name=python-pip
+
+- name: Install Vim
+  pacman:
+    name: gvim
+
+- name: Install Zip
+  pacman:
+    name: zip
+
+- name: Install Unzip
+  pacman:
+    name: unzip
+
+- name: Install XClip
+  pacman:
+    name: xclip
+
+- name: Install ZSH
+  pacman:
+    name: zsh
+
+- name: Install CURL
+  pacman:
+    name: curl
+
+- name: Install HTTPie
+  pacman:
+    name: httpie
+
+- name: Install net-tools
+  pacman:
+    name: net-tools
+
+- name: Install GCC
+  pacman:
+    name: gcc
+
+- name: Install Flatpak
+  pacman:
+    name: flatpak
+
+- name: Add the flathub flatpak repository remote to the user installation
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+- name: Install Spotify
+  flatpak:
+    name: com.spotify.Client
+
+- name: Install Discord
+  flatpak:
+    name: com.discordapp.Discord
+
+- name: Install Slack
+  flatpak:
+    name: com.slack.Slack
+
+- name: Running Latte Dock playbook
+  include_tasks: latte-dock.yml
+

@@ -1,0 +1,13 @@
+---
+
+- name: Start post instaler scripts
+  debug:
+    msg:
+      - "User: {{var_user}}"
+      - "Git name: {{var_git_name}}"
+      - "Git email: {{var_git_email}}"
+      - "Os Family {{ansible_facts['os_family']}}"
+
+- name: Running EndeavourOS playbook
+  include_tasks: endeavour/main.yml
+  when: ansible_facts['os_family'] == "Archlinux"

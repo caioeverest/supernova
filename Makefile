@@ -2,22 +2,8 @@
 
 git_name := $(or $(git_name),${USER})
 distro := $(shell cat /etc/*release | grep '^ID=' | sed 's/ID=//' | tr A-Z a-z)
-golang_version := "1.15"
+golang_version := "1.15.8"
 k9s_version := "0.24.2"
-
-#Set package manager
-ifeq ($(distro),ubuntu)
-	pkgmanager = apt
-endif
-ifeq ($(distro),elementary)
-	pkgmanager = apt
-endif
-ifeq ($(distro),fedora)
-	pkgmanager = dnf
-endif
-ifeq ($(distro),pop)
-	pkgmanager = apt
-endif
 
 .PHONY: check-params
 check-params:
@@ -25,12 +11,24 @@ check-params:
 	@echo "You set the git name as $(git_name)"
 	@echo "Your current distro is $(distro)"
 
+#Set package manager
 .PHONY: prerun
 prerun:
-	sudo $(pkgmanager) update -y
-	sudo $(pkgmanager) install software-properties-common -y
-	#@if [ "$(pkgmanager)" = "apt" ]; then sudo apt-add-repository --yes --update ppa:ansible/ansible; fi
-	sudo $(pkgmanager) install -y ansible
+ifeq ($(distro),$(filter $(distro),ubuntu pop elementary))
+	sudo apt update -y
+	sudo apt install software-properties-common -y
+	sudo apt-add-repository --yes --update ppa:ansible/ansible
+	sudo apt install -y ansible
+endif
+ifeq ($(distro),fedora)
+	sudo dnf update -y
+	sudo dnf install software-properties-common -y
+	sudo dnf install -y ansible
+endif
+ifeq ($(distro),endeavouros)
+	sudo pacman -Syu --noconfirm
+	sudo pacman -S ansible --noconfirm
+endif
 	ansible-galaxy install comcast.sdkman
 
 .PHONY: install
@@ -43,5 +41,4 @@ install: check-params prerun
 		-e var_go_version=$(golang_version) \
 		-e var_k9s_version=$(k9s_version) \
 		-k -b --ask-become-pass playbooks/main.yml
-
 

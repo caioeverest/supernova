@@ -1,0 +1,36 @@
+
+- name: Check if latte-dock is cloned
+  stat:
+    path: "/home/{{var_user}}/developer/latte-dock"
+  register: ldock
+
+- name: Cloning Latte Dock git
+  git:
+    repo: 'https://github.com/KDE/latte-dock.git'
+    dest: "/home/{{var_user}}/developer/latte-dock"
+  become_user: "{{var_user}}"
+  when: not ldock.stat.exists
+
+- name: Installing dependencies
+  pacman:
+    name: "{{ item }}"
+  loop:
+    - cmake
+    - extra-cmake-modules
+    - python
+    - plasma-framework
+    - plasma-desktop
+  become_user: "{{var_user}}"
+
+- name: Installing Latte Dock
+  script: "/home/{{var_user}}/developer/latte-dock/install.sh"
+  become_user: "{{var_user}}"
+  when: not ldock.stat.exists
+
+- name: "Creates script to start Latte Dock on startup"
+  cron:
+    name: "Latte Dock startup"
+    special_time: reboot
+    user: "{{var_user}}"
+    job: "latte-dock &"
+  when: not ldock.stat.exists

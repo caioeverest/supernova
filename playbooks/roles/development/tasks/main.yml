@@ -23,3 +23,7 @@
 - name: Running Pop!_OS playbook
   include_tasks: popos/main.yml
   when: ansible_facts['os_family'] == "Pop!_OS"
+
+- name: Running EndeavourOS playbook
+  include_tasks: endeavour/main.yml
+  when: ansible_facts['os_family'] == "Archlinux"
