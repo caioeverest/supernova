@@ -8,6 +8,10 @@
     name: user.name
     value: "{{var_git_name}}"
 
+- git_config:
+    name: init.defaultBranch
+    value: main
+
 - name: Write global git ignore file
   copy:
     src: global-git-ignore
