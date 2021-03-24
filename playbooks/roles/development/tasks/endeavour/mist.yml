@@ -19,3 +19,11 @@
 - name: Install VSCode
   flatpak:
     name: com.visualstudio.code
+
+- name: Install NodeJS
+  pacman:
+    name: nodejs
+
+- name: Install npm
+  pacman:
+    name: npm

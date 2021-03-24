@@ -26,3 +26,11 @@
 - name: Install VSCode
   flatpak:
     name: com.visualstudio.code
+
+- name: Install NodeJS
+  dnf:
+    name: nodejs
+
+- name: Install npm
+  dnf:
+    name: npm

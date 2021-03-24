@@ -30,3 +30,11 @@
   snap:
     name: code
     classic: yes
+
+- name: Install NodeJS
+  apt:
+    name: nodejs
+
+- name: Install npm
+  apt:
+    name: npm
