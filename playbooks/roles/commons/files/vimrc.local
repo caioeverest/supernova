@@ -1,14 +1,2 @@
-colorscheme hornet
-colorscheme challenger_deep
-
-if has('nvim') || has('termguicolors')
-  set termguicolors
-endif
-
 autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
-
-nmap tg :tabp<CR>
-
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-nmap \\ :NERDTreeToggle<CR>
