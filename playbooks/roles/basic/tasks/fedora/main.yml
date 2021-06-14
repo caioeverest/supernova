@@ -67,3 +67,10 @@
 - name: Install Discord
   flatpak:
     name: com.discordapp.Discord
+
+- name: Install DNF Plugins Core
+  dnf:
+    name: dnf-plugins-core
+
+- name: Run brave playbook
+  include_tasks: brave.yml

@@ -1,6 +1,6 @@
-- name: Install Google Chrome
+- name: Install Brave
   yay:
-    name: google-chrome
+    name: brave-bin
 
 - name: Install GitKraken
   yay:

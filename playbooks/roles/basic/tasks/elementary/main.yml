@@ -49,3 +49,10 @@
 - name: Install Slack
   snap:
     name: slack
+
+- name: Install API Transport HTTPS
+  apt:
+    name: apt-transport-https
+
+- name: Run brave playbook
+  include_tasks: brave.yml
