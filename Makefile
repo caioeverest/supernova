@@ -22,7 +22,7 @@ ifeq ($(distro),$(filter $(distro),ubuntu pop elementary))
 endif
 ifeq ($(distro),fedora)
 	sudo dnf update -y
-	sudo dnf install software-properties-common -y
+	#sudo dnf install software-properties-common -y
 	sudo dnf install -y ansible
 endif
 ifeq ($(distro),endeavouros)
