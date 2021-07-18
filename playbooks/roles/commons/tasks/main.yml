@@ -44,3 +44,9 @@
 
 - name: Running KubeCTL install
   include: kubectl.yml
+
+- name: Running Rust install
+  include: rust.yml
+
+- name: Running RBenv install
+  include: rbenv.yml

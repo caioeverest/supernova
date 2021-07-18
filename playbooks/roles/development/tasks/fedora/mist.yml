@@ -15,6 +15,10 @@
   dnf:
     name: ripgrep
 
+    - name: Install Python Dev
+  dnf:
+    name: python3-devel
+
 - name: Install Postman
   flatpak:
     name: postman
@@ -31,6 +35,16 @@
   dnf:
     name: nodejs
 
-- name: Install npm
+- name: Install Yarn
   dnf:
-    name: npm
+    name: yarnpkg
+
+- name: Creating npm global directory
+  file:
+    path: "/home/{{var_user}}/.npm-global"
+    state: directory
+    owner: "{{var_user}}"
+    group: "{{var_user}}"
+
+- name: Add Lazygit repository
+  shell: npm config set prefix '~/.npm-global'

@@ -63,3 +63,12 @@ function go-cover() {
 
 # General
 export PATH=$PATH:$HOME/.local/bin
+export SDKMAN_OFFLINE_MODE=false
+export PATH=~/.npm-global/bin:$PATH
+
+# Rust
+export PATH=$PATH:$HOME/.cargo/bin
+
+# Ruby
+export PATH=$PATH:$HOME/.rbenv/bin
+eval "$(rbenv init - zsh)"

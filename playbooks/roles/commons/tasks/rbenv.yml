@@ -1,0 +1,30 @@
+---
+
+- name: Check if rbenv is cloned
+  stat:
+    path: "/home/{{var_user}}/.rbenv"
+  register: rbenv_dir
+
+- name: Download RBenv config
+  git:
+    repo: 'https://github.com/rbenv/rbenv.git'
+    dest: "/home/{{var_user}}/.rbenv"
+  become_user: "{{var_user}}"
+  when: not rbenv_dir.stat.exists
+
+- name: Init RBenv
+  shell: ~/.rbenv/bin/rbenv init
+
+- name: Creating RBenv plugin folder
+  file:
+    path: "/home/{{var_user}}/.rbenv/plugins/"
+    state: directory
+    owner: "{{var_user}}"
+    group: "{{var_user}}"
+
+- name: Download Ruby-build config
+  git:
+    repo: 'https://github.com/rbenv/ruby-build.git'
+    dest: "/home/{{var_user}}/.rbenv/plugins/ruby-build"
+  become_user: "{{var_user}}"
+  when: not rbenv_dir.stat.exists
