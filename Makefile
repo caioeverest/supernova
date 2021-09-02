@@ -2,7 +2,7 @@
 
 git_name := $(or $(git_name),${USER})
 distro := $(shell cat /etc/*release | grep '^ID=' | sed 's/ID=//' | tr A-Z a-z)
-golang_version := "1.16.2"
+golang_version := "1.17"
 k9s_version := "0.24.2"
 
 .PHONY: check-params
