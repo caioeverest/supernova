@@ -20,7 +20,7 @@
 - name: Install Vim Enhanced
   dnf:
     name: vim-enhanced
-    
+
 - name: Install Vim
   dnf:
     name: vim-X11
@@ -53,5 +53,6 @@
   dnf:
     name: dnf-plugins-core
 
-- name: Run brave playbook
-  include_tasks: brave.yml
+- name: Install Firefox
+  flatpak:
+    name: org.mozilla.firefox
