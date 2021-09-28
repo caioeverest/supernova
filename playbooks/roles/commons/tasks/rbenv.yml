@@ -13,7 +13,13 @@
   when: not rbenv_dir.stat.exists
 
 - name: Init RBenv
-  shell: ~/.rbenv/bin/rbenv init
+  shell: "/home/{{var_user}}/.rbenv/bin/rbenv init"
+  when: not rbenv_dir.stat.exists
+
+- name: Check if rbenv have plugins
+  stat:
+    path: "/home/{{var_user}}/.rbenv/plugins"
+  register: rbenv_plugins_dir
 
 - name: Creating RBenv plugin folder
   file:
@@ -21,10 +27,11 @@
     state: directory
     owner: "{{var_user}}"
     group: "{{var_user}}"
+  when: not rbenv_plugins_dir.stat.exists
 
 - name: Download Ruby-build config
   git:
     repo: 'https://github.com/rbenv/ruby-build.git'
     dest: "/home/{{var_user}}/.rbenv/plugins/ruby-build"
   become_user: "{{var_user}}"
-  when: not rbenv_dir.stat.exists
+  when: not rbenv_plugins_dir.stat.exists
