@@ -17,7 +17,7 @@ check-params:
 .PHONY: prerun
 prerun:
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-ifeq ($(distro),$(filter $(distro),ubuntu pop elementary))
+ifeq ($(distro),$(filter $(distro),ubuntu pop))
 	sudo apt update -y
 	sudo apt install software-properties-common -y
 	sudo apt-add-repository --yes --update ppa:ansible/ansible
@@ -27,10 +27,6 @@ ifeq ($(distro),fedora)
 	sudo dnf update -y
 	#sudo dnf install software-properties-common -y
 	sudo dnf install -y ansible
-endif
-ifeq ($(distro),endeavouros)
-	sudo pacman -Syu --noconfirm
-	sudo pacman -S ansible --noconfirm
 endif
 ifeq ($(distro),macos)
 	kernel := "darwin"
@@ -52,4 +48,4 @@ install: check-params prerun
 		-e var_kernel=$(kernel) \
 		-e var_arch=$(arch) \
 		-k -b --ask-become-pass playbooks/main.yml
-
+		
