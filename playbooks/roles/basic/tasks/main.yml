@@ -16,14 +16,10 @@
   include_tasks: fedora/main.yml
   when: ansible_facts['os_family'] == "RedHat" and ansible_facts['distribution'] == "Fedora"
 
-- name: Running elementary playbook
-  include_tasks: elementary/main.yml
-  when: ansible_facts['os_family'] == "elementary OS"
-
 - name: Running Pop!_OS playbook
   include_tasks: popos/main.yml
   when: ansible_facts['os_family'] == "Pop!_OS"
 
-- name: Running EndeavourOS playbook
-  include_tasks: endeavour/main.yml
-  when: ansible_facts['os_family'] == "Archlinux"
+- name: Running MacOS playbook
+  include_tasks: macos/main.yml
+  when: ansible_facts['os_family'] == "Darwin"

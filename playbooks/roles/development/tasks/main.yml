@@ -27,3 +27,7 @@
 - name: Running EndeavourOS playbook
   include_tasks: endeavour/main.yml
   when: ansible_facts['os_family'] == "Archlinux"
+
+- name: Running MacOS playbook
+  include_tasks: macos/main.yml
+  when: ansible_facts['os_family'] == "Darwin"

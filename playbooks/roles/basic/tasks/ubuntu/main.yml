@@ -43,6 +43,10 @@
   snap:
     name: discord
 
+- name: Install Slack
+  snap:
+    name: slack
+
 - name: Install Gnome extension preference
   apt:
     name: gnome-shell-extension-prefs

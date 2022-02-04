@@ -1,8 +1,5 @@
 ---
 
-- name: Open docker playbook
-  include: docker.yml
-
 - name: Open mist apps playbook
   include: mist.yml
 

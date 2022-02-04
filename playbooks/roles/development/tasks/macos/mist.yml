@@ -1,0 +1,29 @@
+---
+
+- name: Install Iterm2
+  community.general.homebrew:
+    name: homebrew/cask/iterm2
+
+- name: Install Lazygit
+  community.general.homebrew:
+    name: lazygit
+
+- name: Install RipGrep
+  community.general.homebrew:
+    name: ripgrep
+
+- name: Install Postman
+  community.general.homebrew:
+    name: homebrew/cask/postman
+
+- name: Install GitKraken
+  community.general.homebrew:
+    name: homebrew/cask/gitkraken
+
+- name: Install VSCode
+  community.general.homebrew:
+    name: homebrew/cask/vscode
+
+- name: Install NodeJS
+  community.general.homebrew:
+    name: node

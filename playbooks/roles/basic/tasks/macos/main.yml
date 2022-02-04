@@ -1,0 +1,26 @@
+---
+
+- name: Install Vim
+  community.general.homebrew:
+    name: neovim
+    update_homebrew: yes
+
+- name: Install HTTPie
+  community.general.homebrew:
+    name: httpie
+
+- name: Install GCC
+  community.general.homebrew:
+    name: gcc
+
+- name: Install Spotify
+  community.general.homebrew:
+    name: homebrew/cask/spotify
+
+- name: Install Discord
+  community.general.homebrew:
+    name: homebrew/cask/discord
+
+- name: Install slack
+  community.general.homebrew:
+    name: homebrew/cask/slack

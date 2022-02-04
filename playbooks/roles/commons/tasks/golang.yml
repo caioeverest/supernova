@@ -7,7 +7,7 @@
 
 - name: Download Golang
   get_url:
-    url: "https://dl.google.com/go/go{{var_go_version}}.linux-amd64.tar.gz"
+    url: "https://dl.google.com/go/go{{var_go_version}}.{{var_kernel}}-{{var_arch}}.tar.gz"
     dest: "/tmp/golang.tar.gz"
     owner: "{{var_user}}"
     group: "{{var_user}}"

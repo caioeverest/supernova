@@ -6,3 +6,6 @@
 - name: Open mist apps playbook
   include: mist.yml
 
+- name: Install jetbrains toolbox
+  include: jetbrains.yml
+

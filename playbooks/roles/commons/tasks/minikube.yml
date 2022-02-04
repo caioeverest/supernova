@@ -7,7 +7,7 @@
 
 - name: Download Minikube
   get_url:
-    url: "https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64"
+    url: "https://storage.googleapis.com/minikube/releases/latest/minikube-{{var_kernel}}-{{var_arch}}"
     dest: "/tmp/minikube"
     owner: "{{var_user}}"
     group: "{{var_user}}"

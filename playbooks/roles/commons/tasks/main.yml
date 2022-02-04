@@ -18,9 +18,6 @@
 - name: Running Oh My ZSH install
   include: oh-my-zsh.yml
 
-- name: Install jetbrains toolbox
-  include: jetbrains.yml
-
 - name: Running Golang install
   include: golang.yml
 
@@ -33,14 +30,12 @@
 - name: Running custom vim install
   include: vim.yml
 
-# - name: Configure keybind
-#   include: keybinding.yml
-
 - name: Running Minikube install
   include: minikube.yml
 
-- name: Running k9s install
-  include: k9s.yml
+- name: Install k9s
+  community.general.homebrew:
+    name: derailed/k9s/k9s
 
 - name: Running KubeCTL install
   include: kubectl.yml

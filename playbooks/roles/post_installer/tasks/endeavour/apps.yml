@@ -1,7 +1,0 @@
-- name: Install Brave
-  yay:
-    name: brave-bin
-
-- name: Install GitKraken
-  yay:
-    name: gitkraken

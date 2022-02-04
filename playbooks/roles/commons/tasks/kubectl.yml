@@ -12,7 +12,7 @@
 
 - name: Download Kubectl
   get_url:
-    url: "https://storage.googleapis.com/kubernetes-release/release/{{kubectl_version.stdout}}/bin/linux/amd64/kubectl"
+    url: "https://storage.googleapis.com/kubernetes-release/release/{{kubectl_version.stdout}}/bin/{{var_kernel}}/{{var_arch}}/kubectl"
     dest: "/usr/local/bin/kubectl"
     owner: "{{var_user}}"
     group: "{{var_user}}"

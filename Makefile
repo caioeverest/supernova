@@ -1,9 +1,11 @@
 .DEFAULT_GOAL := install
 
-git_name := $(or $(git_name),${USER})
-distro := $(shell cat /etc/*release | grep '^ID=' | sed 's/ID=//' | tr A-Z a-z)
-golang_version := "1.17"
-k9s_version := "0.24.2"
+git_name       := $(or $(git_name),${USER})
+distro         := $(shell cat /etc/*release | grep '^ID=' | sed 's/ID=//' | tr A-Z a-z)
+golang_version := "1.17.6"
+k9s_version    := "0.24.2"
+kernel         := "linux"
+arch           := "amd64"
 
 .PHONY: check-params
 check-params:
@@ -14,6 +16,7 @@ check-params:
 #Set package manager
 .PHONY: prerun
 prerun:
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ifeq ($(distro),$(filter $(distro),ubuntu pop elementary))
 	sudo apt update -y
 	sudo apt install software-properties-common -y
@@ -29,6 +32,12 @@ ifeq ($(distro),endeavouros)
 	sudo pacman -Syu --noconfirm
 	sudo pacman -S ansible --noconfirm
 endif
+ifeq ($(distro),macos)
+	kernel := "darwin"
+	arch   := "arm64"
+	xcode-select --install
+	brew install ansible
+endif
 	ansible-galaxy install comcast.sdkman
 
 .PHONY: install
@@ -40,5 +49,7 @@ install: check-params prerun
 		-e var_git_email=$(git_email) \
 		-e var_go_version=$(golang_version) \
 		-e var_k9s_version=$(k9s_version) \
+		-e var_kernel=$(kernel) \
+		-e var_arch=$(arch) \
 		-k -b --ask-become-pass playbooks/main.yml
 
