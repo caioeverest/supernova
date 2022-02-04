@@ -34,7 +34,6 @@ ifeq ($(distro),macos)
 	xcode-select --install
 	brew install ansible
 endif
-	ansible-galaxy install comcast.sdkman
 
 .PHONY: install
 install: check-params prerun
@@ -48,4 +47,3 @@ install: check-params prerun
 		-e var_kernel=$(kernel) \
 		-e var_arch=$(arch) \
 		-k -b --ask-become-pass playbooks/main.yml
-		
